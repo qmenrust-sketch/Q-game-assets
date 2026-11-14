@@ -1,0 +1,281 @@
+[gd_scene format=3 uid="uid://csmv1sqy7q2ej"]
+
+[ext_resource type="Script" uid="uid://bgtuxtitcqm6j" path="res://SCRIPTS/player.gd" id="1_85nbx"]
+[ext_resource type="AudioStream" uid="uid://7j61kmvws3kh" path="res://SOUND/clear-bright-sound-of-step-in-shoes-on-the-floor.mp3" id="2_606se"]
+[ext_resource type="PackedScene" uid="uid://7cg1pj1fl0m0" path="res://MODELS/handheld_portable_radio__walkie_talkie.glb" id="2_b8es0"]
+[ext_resource type="PackedScene" uid="uid://csohwbp2nckey" path="res://MODELS/fp_arms.glb" id="2_pod2e"]
+[ext_resource type="PackedScene" uid="uid://c8hprwg13583k" path="res://MODELS/hammer.glb" id="3_sr02u"]
+[ext_resource type="AudioStream" uid="uid://bjgndnjuw0nl1" path="res://SOUND/fast-walking-on-a-concrete-surface.mp3" id="3_urp6f"]
+[ext_resource type="PackedScene" uid="uid://48lumjiru7bt" path="res://MODELS/mop.glb" id="4_pod2e"]
+[ext_resource type="AudioStream" uid="uid://cofdily53q81q" path="res://SOUND/korobka-po-betonu--tsarapane.mp3" id="4_pylmc"]
+[ext_resource type="PackedScene" uid="uid://ch2pcn26oib55" path="res://MODELS/remote_controller.glb" id="4_ragqx"]
+[ext_resource type="AudioStream" uid="uid://dhijfqytfwg4v" path="res://SOUND/hammer-hammering-a-nail.mp3" id="5_pbfsw"]
+[ext_resource type="PackedScene" uid="uid://c5i06h6xxn5ll" path="res://fps_coh.tscn" id="6_pbfsw"]
+[ext_resource type="PackedScene" uid="uid://d2peweqgf42a7" path="res://MODELS/military_wood_box.glb" id="7_dxdai"]
+[ext_resource type="PackedScene" uid="uid://dngr40b2jokel" path="res://MODELS/PRISONER.glb" id="8_ragqx"]
+[ext_resource type="PackedScene" uid="uid://btjbq3r0r3m7" path="res://MODELS/coffin.glb" id="9_606se"]
+[ext_resource type="FontFile" uid="uid://dsgpam8uirxpv" path="res://MODELS/fonts/Koganejidainogemu_0.ttf" id="9_b26j0"]
+[ext_resource type="Script" uid="uid://djmp35yre255q" path="res://daycount.gd" id="10_n7ghd"]
+[ext_resource type="Script" uid="uid://cjtmoda5yrhdq" path="res://staticday.gd" id="13_bwjto"]
+[ext_resource type="Script" uid="uid://jlk56nai2nlu" path="res://settings.gd" id="13_op7ga"]
+[ext_resource type="Script" uid="uid://bsi1lmiou5hxl" path="res://balance.gd" id="13_urp6f"]
+[ext_resource type="FontFile" uid="uid://diou8bmmrns7t" path="res://MODELS/fonts/Senotakaiguriddo-Regular.otf" id="14_q13i1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1871402766 node_paths=PackedStringArray("radio", "scanner", "hammer", "mop", "armgrob", "armbody", "static_node", "pause_menu", "resume_button", "quit_button", "settings_button", "settings_menu") groups=["player"]]
+script = ExtResource("1_85nbx")
+armgrob_speed = 1.8
+radio = NodePath("Camera3D/radio")
+scanner = NodePath("Camera3D/scanner")
+hammer = NodePath("Camera3D/hammer")
+mop = NodePath("mop")
+armgrob = NodePath("armGrob")
+armbody = NodePath("armbody")
+static_node = NodePath("static")
+walk_sound = ExtResource("2_606se")
+run_sound = ExtResource("3_urp6f")
+armgrob_sound = ExtResource("4_pylmc")
+hammer_sound = ExtResource("5_pbfsw")
+pause_menu = NodePath("pause")
+resume_button = NodePath("pause/continue")
+quit_button = NodePath("pause/quit")
+settings_button = NodePath("pause/settings2")
+settings_menu = NodePath("pause/settings")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=789498043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7331061, -0.6100041)
+
+[node name="fps_coh" parent="Camera3D" unique_id=1978709697 groups=["HUD"] instance=ExtResource("6_pbfsw")]
+
+[node name="radio" parent="Camera3D" unique_id=450186585 instance=ExtResource("2_pod2e")]
+transform = Transform3D(-3.29, 0, -2.8762094e-07, 0, 3.29, 0, 2.8762094e-07, 0, -3.29, 0.069987535, -0.6298671, 0.14023489)
+visible = false
+
+[node name="Skeleton3D" parent="Camera3D/radio/Sketchfab_model/539a16fce09c4bb0adf139de37cb7aca_fbx/RootNode/root/Object_4" parent_id_path=PackedInt32Array(450186585, 1462491361) index="0" unique_id=1946639883]
+bones/2/rotation = Quaternion(7.439062, 0.026737, -0.148549, 0.608507)
+
+[node name="radio1" parent="Camera3D/radio" unique_id=349124778 instance=ExtResource("2_b8es0")]
+transform = Transform3D(-0.016717326, -7.2380407e-10, 1.2696523e-09, 0, 0.01452313, 0.008279354, -1.461475e-09, 0.008279354, -0.01452313, -0.17138654, -0.059782743, 0.43073064)
+
+[node name="scanner" parent="Camera3D" unique_id=867815609 instance=ExtResource("2_pod2e")]
+transform = Transform3D(-3.29, 0, -2.8762094e-07, 0, 3.29, 0, 2.8762094e-07, 0, -3.29, 0.069987535, -0.6298671, 0.14023489)
+visible = false
+
+[node name="Skeleton3D" parent="Camera3D/scanner/Sketchfab_model/539a16fce09c4bb0adf139de37cb7aca_fbx/RootNode/root/Object_4" parent_id_path=PackedInt32Array(867815609, 1462491361) index="0" unique_id=1946639883]
+bones/2/rotation = Quaternion(19.669062, 0.026737, -0.148549, 0.608507)
+
+[node name="Sketchfab_Scene" parent="Camera3D/scanner" unique_id=1342524399 instance=ExtResource("4_ragqx")]
+transform = Transform3D(-0.04863222, -1.9279625e-09, 3.7892947e-09, 0, 0.043344475, 0.022053322, -4.2515635e-09, 0.022053322, -0.043344475, -0.17793682, 0.017085671, 0.45391065)
+
+[node name="hammer" parent="Camera3D" unique_id=2084333782 instance=ExtResource("2_pod2e")]
+transform = Transform3D(-3.29, 0, -2.8762094e-07, 0, 3.29, 0, 2.8762094e-07, 0, -3.29, 0.069987535, -0.6298671, 0.14023489)
+visible = false
+
+[node name="Skeleton3D" parent="Camera3D/hammer/Sketchfab_model/539a16fce09c4bb0adf139de37cb7aca_fbx/RootNode/root/Object_4" parent_id_path=PackedInt32Array(2084333782, 1462491361) index="0" unique_id=1946639883]
+bones/2/rotation = Quaternion(92.27906, 0.026737, -0.148549, 0.608507)
+
+[node name="hammer" parent="Camera3D/hammer" unique_id=692610671 instance=ExtResource("3_sr02u")]
+transform = Transform3D(-9.81532e-10, -0.01519757, 1.0045821e-09, 0.014758019, -1.1930017e-09, -0.0036286318, 0.0036286318, 7.4117323e-10, 0.014758019, -0.1508893, 0.008263946, 0.44133872)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1329483727]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 1.6642911, 0)
+shape = SubResource("CapsuleShape3D_g4v7s")
+
+[node name="mop" parent="." unique_id=948086207 instance=ExtResource("4_pod2e")]
+transform = Transform3D(2.37, 0, 0, 0, 1.7023332, -1.6489273, 0, 1.6489273, 1.7023332, 0.59914744, 2.8510509, -0.7254025)
+
+[node name="Sketchfab_Scene" parent="mop" unique_id=2010763218 instance=ExtResource("2_pod2e")]
+transform = Transform3D(-1.5221343, -3.21084e-08, -2.1343025e-07, 6.9752e-08, 1.3512443, -0.7007358, 2.0425001e-07, -0.7007358, -1.3512443, -0.17339285, -0.14003283, 0.27780217)
+
+[node name="Skeleton3D" parent="mop/Sketchfab_Scene/Sketchfab_model/539a16fce09c4bb0adf139de37cb7aca_fbx/RootNode/root/Object_4" parent_id_path=PackedInt32Array(2010763218, 1462491361) index="0" unique_id=1946639883]
+transform = Transform3D(1, -1.03249675e-08, -3.5772565e-08, 6.571099e-10, 0.9655253, -0.26030782, 3.7227004e-08, 0.26030782, 0.9655253, 4.656613e-09, 0.026977539, -0.027619004)
+bones/2/rotation = Quaternion(1.399062, 0.081737, 0.441451, 0.678507)
+bones/3/rotation = Quaternion(-0.495887, -0.241645, 0.057294, 0.915121)
+bones/4/rotation = Quaternion(-0.08662, 0.073497, 0.008415, 0.934697)
+bones/5/rotation = Quaternion(0.017485, 0.188238, 0.094125, 0.994938)
+bones/27/rotation = Quaternion(2.149062, -0.111738, 0.14855, 0.608507)
+bones/28/rotation = Quaternion(-1.170888, 0.001646, -0.102295, 0.99012)
+
+[node name="armGrob" parent="." unique_id=1401095547 instance=ExtResource("2_pod2e")]
+transform = Transform3D(-3.29, 0, -2.8762096e-07, 2.2532866e-07, 2.0447013, -2.5774593, 1.7875348e-07, -2.5774593, -2.0447013, 0.051403522, 2.0400467, -0.4421689)
+visible = false
+
+[node name="Sketchfab_model" parent="armGrob" index="0" unique_id=1719893432]
+transform = Transform3D(0.86795825, -7.1054274e-15, 0, 0, -2.9802322e-08, 1, 1.7763568e-15, -1, -2.9802322e-08, 0, 0, 0)
+
+[node name="ivent_grob" parent="armGrob" unique_id=22531437 instance=ExtResource("9_606se")]
+transform = Transform3D(0.28369412, 1.3957467e-06, -24.060644, 15.979317, 17.98947, 0.18840995, 17.988216, -15.980425, 0.21209455, -0.58946663, 0.010432929, 0.571477)
+
+[node name="lid1_phongE4_0" parent="armGrob/ivent_grob/Sketchfab_model/94bbef9cbc864ffe9947cbabd37a97ab_fbx/RootNode/lid1" parent_id_path=PackedInt32Array(22531437, 1685265446) index="0" unique_id=630754402]
+visible = false
+
+[node name="coffin2_phongE3_0" parent="armGrob/ivent_grob/Sketchfab_model/94bbef9cbc864ffe9947cbabd37a97ab_fbx/RootNode/coffin2" parent_id_path=PackedInt32Array(22531437, 1789051113) index="0" unique_id=614433145]
+visible = false
+
+[node name="coffin2_coffin1_0" parent="armGrob/ivent_grob/Sketchfab_model/94bbef9cbc864ffe9947cbabd37a97ab_fbx/RootNode/coffin2" parent_id_path=PackedInt32Array(22531437, 1789051113) index="1" unique_id=1602114829]
+visible = false
+
+[node name="Sketchfab_Scene" parent="armGrob" unique_id=1326625817 instance=ExtResource("7_dxdai")]
+transform = Transform3D(-1.02693326e-10, 5.022071e-10, -0.0075987848, 0.0057445792, 0.0049740663, 2.5110353e-10, 0.0049740663, -0.0057445792, -4.4688353e-10, 1.349692, 0.18895298, 0.87183046)
+visible = false
+
+[node name="armbody" parent="." unique_id=593511663 instance=ExtResource("2_pod2e")]
+transform = Transform3D(-2.96, -2.3952936e-08, -2.7777338e-07, 2.0272734e-07, 1.8396099, -2.31893, 1.9139858e-07, -2.31893, -1.8396099, 0.051403522, 1.8272557, -0.02350521)
+visible = false
+
+[node name="Skeleton3D" parent="armbody/Sketchfab_model/539a16fce09c4bb0adf139de37cb7aca_fbx/RootNode/root/Object_4" parent_id_path=PackedInt32Array(593511663, 1462491361) index="0" unique_id=1946639883]
+bones/3/rotation = Quaternion(-0.410887, 0.018355, 0.077294, 0.940121)
+bones/4/rotation = Quaternion(-0.06162, -1.136503, 0.018415, 0.999697)
+bones/28/rotation = Quaternion(-0.435888, 0.001646, -0.102295, 0.99012)
+bones/29/rotation = Quaternion(-0.01162, 0.716503, -0.018415, 0.999697)
+
+[node name="PRISONER" parent="armbody" unique_id=2020458645 instance=ExtResource("8_ragqx")]
+transform = Transform3D(0.4081009, -0.0001821735, -0.41774362, 0.39363286, 0.1957, 0.38446158, 0.13986713, -0.550234, 0.13687855, 0.027139809, 0.1784442, 0.63752544)
+
+[node name="Skeleton3D" parent="armbody/PRISONER/Armature_003" parent_id_path=PackedInt32Array(2020458645, 1397073173) index="0" unique_id=1276839760]
+transform = Transform3D(0.7300716, 0.6833699, 0.0010708547, -0.6833114, 0.7299865, 0.014330586, 0.009011382, -0.011194079, 0.99989694, 1.1444092e-05, 0.037391663, 85.726395)
+bones/1/rotation = Quaternion(0.529338, 0.716352, 0.998482, -0.012437)
+bones/7/rotation = Quaternion(-0.354235, 0.728473, 0.998028, 0.012409)
+bones/18/rotation = Quaternion(0.612312, -0.06178, 0.047137, 0.998176)
+bones/30/parent = 31
+bones/31/parent = 19
+bones/41/rotation = Quaternion(0.3, -0.09, 0.38, 1)
+bones/46/rotation = Quaternion(0.652493, -0.008189, -0.048178, 0.998133)
+bones/55/parent = 57
+bones/56/parent = 54
+
+[node name="pause" type="Control" parent="." unique_id=1850969090]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect2" type="ColorRect" parent="pause" unique_id=958273355]
+layout_mode = 0
+offset_right = 282.0
+offset_bottom = 656.0
+color = Color(0.1749846, 0.17498463, 0.1749846, 1)
+
+[node name="continue" type="Button" parent="pause" unique_id=795200200]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 112.0
+offset_right = 249.0
+offset_bottom = 179.0
+theme_override_fonts/font = ExtResource("9_b26j0")
+theme_override_font_sizes/font_size = 37
+text = "continue"
+
+[node name="settings2" type="Button" parent="pause" unique_id=82921082]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 201.0
+offset_right = 246.0
+offset_bottom = 269.0
+theme_override_fonts/font = ExtResource("9_b26j0")
+theme_override_font_sizes/font_size = 33
+text = "settings"
+
+[node name="quit" type="Button" parent="pause" unique_id=1202959199]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 294.0
+offset_right = 251.0
+offset_bottom = 355.0
+theme_override_fonts/font = ExtResource("9_b26j0")
+theme_override_font_sizes/font_size = 39
+text = "quit"
+
+[node name="Label" type="Label" parent="pause" unique_id=497828853]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 22.0
+offset_right = 197.0
+offset_bottom = 60.0
+theme_override_fonts/font = ExtResource("9_b26j0")
+theme_override_font_sizes/font_size = 50
+text = "pause"
+
+[node name="ColorRect" type="ColorRect" parent="pause" unique_id=652951046]
+layout_mode = 0
+offset_left = 280.0
+offset_top = -2.0
+offset_right = 287.0
+offset_bottom = 655.0
+
+[node name="settings" type="Control" parent="pause" unique_id=1918747885]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1222.0
+offset_bottom = 694.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_op7ga")
+title_font = ExtResource("9_b26j0")
+button_font = ExtResource("14_q13i1")
+
+[node name="Panel" type="Panel" parent="pause/settings" unique_id=1344288273]
+layout_mode = 0
+offset_right = 1170.0
+offset_bottom = 656.0
+
+[node name="DayCounter" type="Label" parent="." unique_id=885406772]
+offset_left = 1002.0
+offset_top = 14.0
+offset_right = 1131.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("9_b26j0")
+theme_override_font_sizes/font_size = 34
+text = "text"
+script = ExtResource("10_n7ghd")
+max_days = 8
+
+[node name="static" type="Panel" parent="." unique_id=917971030]
+offset_left = 435.0
+offset_top = 138.0
+offset_right = 739.0
+offset_bottom = 361.0
+
+[node name="DayCounter" type="Label" parent="static" unique_id=397901098]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 39.0
+offset_right = 129.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("9_b26j0")
+theme_override_font_sizes/font_size = 21
+text = "text"
+script = ExtResource("13_bwjto")
+
+[node name="balance" type="Label" parent="static" unique_id=190968478]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 71.0
+offset_right = 103.0
+offset_bottom = 94.0
+theme_override_fonts/font = ExtResource("9_b26j0")
+theme_override_font_sizes/font_size = 19
+text = "деньги"
+script = ExtResource("13_urp6f")
+
+[node name="Label" type="Label" parent="static" unique_id=704258140]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 4.0
+offset_right = 226.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("9_b26j0")
+theme_override_font_sizes/font_size = 21
+text = "statistic:"
+
+[editable path="Camera3D/radio"]
+[editable path="Camera3D/scanner"]
+[editable path="Camera3D/hammer"]
+[editable path="mop/Sketchfab_Scene"]
+[editable path="armGrob"]
+[editable path="armGrob/ivent_grob"]
+[editable path="armbody"]
+[editable path="armbody/PRISONER"]
